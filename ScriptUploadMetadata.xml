@@ -27,6 +27,7 @@
     <FileEntry Name="data.zip" Filter="1" />
     <FileEntry Name="Demo1.c.pickle" Filter="1" />
     <FileEntry Name="Demo1.ci" Filter="1" />
+    <FileEntry Name="Demo1.prm.bak" Filter="1" />
     <FileEntry Name="Demo1.sdf" Filter="1" />
     <FileEntry Name="fromPort.dat" Filter="1" />
     <FileEntry Name="logfile.log" Filter="1" />
