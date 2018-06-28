@@ -17,7 +17,7 @@ Action()
 
 	web_set_sockets_option("SSL_VERSION", "2&3");
 
-	lr_think_time(13);
+	lr_think_time(14);
 
 	web_submit_form("reserve.php", 
 		"Snapshot=t2.inf", 
