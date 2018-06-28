@@ -2580,24 +2580,27 @@ void
 # 8 "globals.h" 2
 
 
+
  
  
+
 
 
 # 3 "f:\\mydata\\loadrunnerscripts\\vugen\\scripts\\demo1\\\\combined_Demo1.c" 2
 
 # 1 "vuser_init.c" 1
+ 
+
+
+
+
+
+
+
 vuser_init()
 {
-	return 0;
-}
-# 4 "f:\\mydata\\loadrunnerscripts\\vugen\\scripts\\demo1\\\\combined_Demo1.c" 2
 
-# 1 "Action.c" 1
-Action()
-{
-
-	web_add_auto_header("DNT", 
+	web_add_header("DNT", 
 		"1");
 
 	web_url("blazedemo.com", 
@@ -2605,7 +2608,7 @@ Action()
 		"Resource=0", 
 		"RecContentType=text/html", 
 		"Referer=", 
-		"Snapshot=t1.inf", 
+		"Snapshot=t5.inf", 
 		"Mode=HTML", 
 		"EXTRARES", 
 		"Url=/favicon.ico", "Referer=", "ENDITEM", 
@@ -2613,39 +2616,48 @@ Action()
 
 	web_set_sockets_option("SSL_VERSION", "2&3");
 
-	lr_think_time(13);
+	return 0;
+}
+# 4 "f:\\mydata\\loadrunnerscripts\\vugen\\scripts\\demo1\\\\combined_Demo1.c" 2
 
-	web_submit_form("reserve.php", 
-		"Snapshot=t2.inf", 
+# 1 "Book.c" 1
+Book()
+{
+
+	web_add_auto_header("DNT", 
+		"1");
+
+	lr_think_time(24);
+
+	web_submit_data("purchase.php", 
+		"Action=http://blazedemo.com/purchase.php", 
+		"Method=POST", 
+		"RecContentType=text/html", 
+		"Referer=http://blazedemo.com/reserve.php", 
+		"Snapshot=t7.inf", 
+		"Mode=HTML", 
 		"ITEMDATA", 
-		"Name=fromPort", "Value={from}", "ENDITEM", 
-		"Name=toPort", "Value={to}", "ENDITEM", 
-		"EXTRARES", 
-		"Url=/favicon.ico", "Referer=", "ENDITEM", 
+		"Name=flight", "Value=9696", "ENDITEM", 
+		"Name=price", "Value=200.98", "ENDITEM", 
+		"Name=airline", "Value=Aer Lingus", "ENDITEM", 
+		"Name=fromPort", "Value=Paris", "ENDITEM", 
+		"Name=toPort", "Value=London", "ENDITEM", 
 		"LAST");
 
-	lr_think_time(11);
-
-	web_submit_form("purchase.php", 
-		"Ordinal=3", 
-		"Snapshot=t3.inf", 
-		"ITEMDATA", 
-		"LAST");
-
-	lr_think_time(52);
+	lr_think_time(43);
 
 	web_submit_form("confirmation.php", 
-		"Snapshot=t4.inf", 
+		"Snapshot=t8.inf", 
 		"ITEMDATA", 
 		"Name=inputName", "Value=AV", "ENDITEM", 
-		"Name=address", "Value=123 Main St.", "ENDITEM", 
-		"Name=city", "Value=New York", "ENDITEM", 
-		"Name=state", "Value=NY", "ENDITEM", 
-		"Name=zipCode", "Value=110023", "ENDITEM", 
+		"Name=address", "Value=123, Main Street", "ENDITEM", 
+		"Name=city", "Value=London", "ENDITEM", 
+		"Name=state", "Value=London", "ENDITEM", 
+		"Name=zipCode", "Value=NE8 2YA", "ENDITEM", 
 		"Name=cardType", "Value=Visa", "ENDITEM", 
-		"Name=creditCardNumber", "Value=1234567891", "ENDITEM", 
+		"Name=creditCardNumber", "Value=1234567890", "ENDITEM", 
 		"Name=creditCardMonth", "Value=11", "ENDITEM", 
-		"Name=creditCardYear", "Value=2020", "ENDITEM", 
+		"Name=creditCardYear", "Value=2019", "ENDITEM", 
 		"Name=nameOnCard", "Value=AV", "ENDITEM", 
 		"Name=rememberMe", "Value=<OFF>", "ENDITEM", 
 		"LAST");
@@ -2654,10 +2666,37 @@ Action()
 }
 # 5 "f:\\mydata\\loadrunnerscripts\\vugen\\scripts\\demo1\\\\combined_Demo1.c" 2
 
+# 1 "Search.c" 1
+Search()
+{
+
+	web_add_header("DNT", 
+		"1");
+
+	lr_think_time(8);
+
+	web_submit_data("reserve.php", 
+		"Action=http://blazedemo.com/reserve.php", 
+		"Method=POST", 
+		"RecContentType=text/html", 
+		"Referer=http://blazedemo.com/", 
+		"Snapshot=t6.inf", 
+		"Mode=HTML", 
+		"ITEMDATA", 
+		"Name=fromPort", "Value=Paris", "ENDITEM", 
+		"Name=toPort", "Value=London", "ENDITEM", 
+		"EXTRARES", 
+		"Url=/favicon.ico", "Referer=", "ENDITEM", 
+		"LAST");
+
+	return 0;
+}
+# 6 "f:\\mydata\\loadrunnerscripts\\vugen\\scripts\\demo1\\\\combined_Demo1.c" 2
+
 # 1 "vuser_end.c" 1
 vuser_end()
 {
 	return 0;
 }
-# 6 "f:\\mydata\\loadrunnerscripts\\vugen\\scripts\\demo1\\\\combined_Demo1.c" 2
+# 7 "f:\\mydata\\loadrunnerscripts\\vugen\\scripts\\demo1\\\\combined_Demo1.c" 2
 
