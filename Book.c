@@ -1,7 +1,9 @@
 Book()
 {
 
-	web_add_auto_header("DNT", 
+	lr_start_transaction("03_BlazeDemo_Purchase");
+
+		web_add_auto_header("DNT", 
 		"1");
 
 	lr_think_time(24);
@@ -21,7 +23,12 @@ Book()
 		"Name=toPort", "Value=London", ENDITEM, 
 		LAST);
 
-	lr_think_time(43);
+	lr_end_transaction("03_BlazeDemo_Purchase", LR_AUTO);
+
+
+	lr_start_transaction("04_BlazeDemo_Confirm");
+
+		lr_think_time(43);
 
 	web_submit_form("confirmation.php", 
 		"Snapshot=t8.inf", 
@@ -38,6 +45,9 @@ Book()
 		"Name=nameOnCard", "Value=AV", ENDITEM, 
 		"Name=rememberMe", "Value=<OFF>", ENDITEM, 
 		LAST);
+
+
+	lr_end_transaction("04_BlazeDemo_Confirm", LR_AUTO);
 
 	return 0;
 }

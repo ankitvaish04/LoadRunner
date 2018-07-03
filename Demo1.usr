@@ -24,8 +24,8 @@ Description=
 ScriptLocale=en-IN
 [Actions]
 vuser_init=vuser_init.c
-Book=Book.c
 Search=Search.c
+Book=Book.c
 vuser_end=vuser_end.c
 [RunLogicFiles]
 Default Profile=default.usp
@@ -37,28 +37,33 @@ Default Profile=default.cfg
 globals.h=
 [Modified Actions]
 vuser_init=1
-Book=1
 Search=1
+Book=1
 vuser_end=0
 [Recorded Actions]
 vuser_init=1
-Book=1
 Search=1
+Book=1
 vuser_end=0
 [Replayed Actions]
 vuser_init=1
-Book=1
 Search=1
+Book=1
 vuser_end=1
 [Interpreters]
 vuser_init=cci
-Book=cci
 Search=cci
+Book=cci
 vuser_end=cci
 [TransactionsOrder]
-Order=
+Order="01_BlazeDemo_HomePage__*delimiter*__02_BlazeDemo_Reserve__*delimiter*__03_BlazeDemo_Purchase__*delimiter*__04_BlazeDemo_Confirm"
 [StateManagement]
 LastReplayStatus=1
 [ActiveReplay]
 LastReplayedRunName=result1
 ActiveRunName=result1
+[Transactions]
+01_BlazeDemo_HomePage=
+02_BlazeDemo_Reserve=
+03_BlazeDemo_Purchase=
+04_BlazeDemo_Confirm=

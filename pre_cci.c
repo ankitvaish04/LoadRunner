@@ -2603,7 +2603,9 @@ vuser_init()
 	web_add_header("DNT", 
 		"1");
 
-	web_url("blazedemo.com", 
+lr_start_transaction("01_BlazeDemo_HomePage");
+
+			web_url("blazedemo.com", 
 		"URL=http://blazedemo.com/", 
 		"Resource=0", 
 		"RecContentType=text/html", 
@@ -2614,17 +2616,56 @@ vuser_init()
 		"Url=/favicon.ico", "Referer=", "ENDITEM", 
 		"LAST");
 
+
+	lr_end_transaction("01_BlazeDemo_HomePage", 2);
+
 	web_set_sockets_option("SSL_VERSION", "2&3");
 
 	return 0;
 }
 # 4 "f:\\mydata\\loadrunnerscripts\\vugen\\scripts\\demo1\\\\combined_Demo1.c" 2
 
+# 1 "Search.c" 1
+Search()
+{
+
+	lr_start_transaction("02_BlazeDemo_Reserve");
+
+		web_add_header("DNT", 
+		"1");
+
+	lr_think_time(8);
+
+	web_submit_data("reserve.php", 
+		"Action=http://blazedemo.com/reserve.php", 
+		"Method=POST", 
+		"RecContentType=text/html", 
+		"Referer=http://blazedemo.com/", 
+		"Snapshot=t6.inf", 
+		"Mode=HTML", 
+		"ITEMDATA", 
+		"Name=fromPort", "Value={P_FromPort}", "ENDITEM", 
+		"Name=toPort", "Value={P_ToPort}", "ENDITEM", 
+		"EXTRARES", 
+		"Url=/favicon.ico", "Referer=", "ENDITEM", 
+		"LAST");
+
+	lr_end_transaction("02_BlazeDemo_Reserve", 2);
+
+
+	return 0;
+
+	
+}
+# 5 "f:\\mydata\\loadrunnerscripts\\vugen\\scripts\\demo1\\\\combined_Demo1.c" 2
+
 # 1 "Book.c" 1
 Book()
 {
 
-	web_add_auto_header("DNT", 
+	lr_start_transaction("02_BlazeDemo_Purchase");
+
+		web_add_auto_header("DNT", 
 		"1");
 
 	lr_think_time(24);
@@ -2644,7 +2685,12 @@ Book()
 		"Name=toPort", "Value=London", "ENDITEM", 
 		"LAST");
 
-	lr_think_time(43);
+	lr_end_transaction("02_BlazeDemo_Purchase", 2);
+
+
+	lr_start_transaction("02_BlazeDemo_Confirm");
+
+		lr_think_time(43);
 
 	web_submit_form("confirmation.php", 
 		"Snapshot=t8.inf", 
@@ -2662,32 +2708,8 @@ Book()
 		"Name=rememberMe", "Value=<OFF>", "ENDITEM", 
 		"LAST");
 
-	return 0;
-}
-# 5 "f:\\mydata\\loadrunnerscripts\\vugen\\scripts\\demo1\\\\combined_Demo1.c" 2
 
-# 1 "Search.c" 1
-Search()
-{
-
-	web_add_header("DNT", 
-		"1");
-
-	lr_think_time(8);
-
-	web_submit_data("reserve.php", 
-		"Action=http://blazedemo.com/reserve.php", 
-		"Method=POST", 
-		"RecContentType=text/html", 
-		"Referer=http://blazedemo.com/", 
-		"Snapshot=t6.inf", 
-		"Mode=HTML", 
-		"ITEMDATA", 
-		"Name=fromPort", "Value=Paris", "ENDITEM", 
-		"Name=toPort", "Value=London", "ENDITEM", 
-		"EXTRARES", 
-		"Url=/favicon.ico", "Referer=", "ENDITEM", 
-		"LAST");
+	lr_end_transaction("02_BlazeDemo_Confirm", 2);
 
 	return 0;
 }

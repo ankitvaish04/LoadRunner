@@ -12,7 +12,9 @@ vuser_init()
 	web_add_header("DNT", 
 		"1");
 
-	web_url("blazedemo.com", 
+lr_start_transaction("01_BlazeDemo_HomePage");
+
+			web_url("blazedemo.com", 
 		"URL=http://blazedemo.com/", 
 		"Resource=0", 
 		"RecContentType=text/html", 
@@ -22,6 +24,9 @@ vuser_init()
 		EXTRARES, 
 		"Url=/favicon.ico", "Referer=", ENDITEM, 
 		LAST);
+
+
+	lr_end_transaction("01_BlazeDemo_HomePage", LR_AUTO);
 
 	web_set_sockets_option("SSL_VERSION", "2&3");
 

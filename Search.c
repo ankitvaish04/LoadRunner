@@ -1,7 +1,9 @@
 Search()
 {
 
-	web_add_header("DNT", 
+	lr_start_transaction("02_BlazeDemo_Reserve");
+
+		web_add_header("DNT", 
 		"1");
 
 	lr_think_time(8);
@@ -14,11 +16,16 @@ Search()
 		"Snapshot=t6.inf", 
 		"Mode=HTML", 
 		ITEMDATA, 
-		"Name=fromPort", "Value=Paris", ENDITEM, 
-		"Name=toPort", "Value=London", ENDITEM, 
+		"Name=fromPort", "Value={P_FromPort}", ENDITEM, 
+		"Name=toPort", "Value={P_ToPort}", ENDITEM, 
 		EXTRARES, 
 		"Url=/favicon.ico", "Referer=", ENDITEM, 
 		LAST);
 
+	lr_end_transaction("02_BlazeDemo_Reserve", LR_AUTO);
+
+
 	return 0;
+
+	
 }
